@@ -25,7 +25,6 @@ import Login from "../components/Forms/Input.vue"
                         <form class="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <Login
-                                    for="Name"
                                     labelText="Name"
                                     inputType="text"
                                     inputName="Name"
@@ -34,7 +33,6 @@ import Login from "../components/Forms/Input.vue"
                             </div>
                             <div>
                                 <Login
-                                for="email"
                                 labelText="Your email"
                                 inputType="email"
                                 inputName="email"
@@ -43,7 +41,6 @@ import Login from "../components/Forms/Input.vue"
                             </div>
                             <div>
                                 <Login
-                                    for="password"
                                     labelText="Password"
                                     inputType="password"
                                     inputName="password"
@@ -52,7 +49,6 @@ import Login from "../components/Forms/Input.vue"
                             </div>
                             <div>
                                 <Login
-                                    for="confirm-password"
                                     labelText="Confirm password"
                                     inputType="password"
                                     inputName="confirm-password"
@@ -64,7 +60,6 @@ import Login from "../components/Forms/Input.vue"
                                     <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
                                 </div>
                             </div>
                             <button type="submit" class="cursor-pointer w-full text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-white/20 backdrop-blur-2xl hover:bg-white/30 focus:ring-gray-800">Create an account</button>

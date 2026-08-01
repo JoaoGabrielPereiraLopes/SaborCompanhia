@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const props = defineProps<{
-    for:string,
     labelText: string,
     inputType: string,
     inputName: string,
@@ -9,7 +8,7 @@ const props = defineProps<{
 </script>
 <template>
     <label 
-    :for="for" 
+    :for="inputName" 
     class="block mb-2 text-sm font-medium  text-white">{{labelText}}</label>
     <input 
     :type="inputType" 
