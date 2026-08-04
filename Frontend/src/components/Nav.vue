@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { RouterLink } from 'vue-router';
     import Logo from './Logo.vue'
     import ListItem from './ListItem.vue'
     
@@ -29,10 +30,15 @@
                         :page="point.url"
                     />
                     <li class="items-center flex">
-                    <button class="bg-[#F8A010] p-3 cursor-pointer text-3xl w-50">
-                       <font-awesome-icon icon="fa-solid fa-circle-user" />
-                       Login
-                    </button>
+                        <RouterLink
+                            to="SignUp"
+                            aria-current="page"
+                        >
+                            <button class="bg-[#F8A010] p-3 cursor-pointer text-3xl w-50">
+                                <font-awesome-icon icon="fa-solid fa-circle-user" />
+                                Sign Up
+                            </button>
+                        </RouterLink>
                     </li>
                 </ul>
 
