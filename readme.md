@@ -1,7 +1,7 @@
 # Author: [João Gabriel Pereira Lopes](https://github.com/JoaoGabrielPereiraLopes)
 # Index
 - [Project Presentation](#project-presentation)
-- [Project Presentation](#project-presentation)
+- [Tecnologies used](#tecnologies-used)
 - [Database](#database)
 # Project Presentation
 This is a website for a fictional restaurant named "Flavor & Company" where I will make a fullstack aplication with three tipes of users.

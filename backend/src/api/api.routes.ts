@@ -1,11 +1,7 @@
 import { Router } from "express";
-import { apiGet, apiPost } from "./api.controller";
+import {apiGet} from "./api.controller";
 
 const router = Router();
-/* Get Route v1/get */
 router.get("/", apiGet);
-
-/* Post Route v1/post */
-router.post("/", apiPost);
 
 export { router };

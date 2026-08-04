@@ -1,11 +1,7 @@
 import { Request, Response } from "express";
 
 const apiGet = async (req: Request, res: Response): Promise<Response> => {
-  return res.status(200).json({ msg: "🚀 hello from v1 api" });
+  return res.status(200).json({ message:"Server is running" });
 };
 
-const apiPost = async (req: Request, res: Response): Promise<Response> => {
-  return res.status(200).json({ msg: req.body });
-};
-
-export { apiPost, apiGet };
+export {apiGet };

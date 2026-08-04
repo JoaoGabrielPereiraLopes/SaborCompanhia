@@ -1,13 +1,15 @@
-CREATE TABLE IF NOT EXISTS `Users` (
-    `id` int unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS
+  `Users` (
+    `id` int NOT NULL AUTO_INCREMENT,
     `Name` varchar(255) NOT NULL,
     `Created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `UpdatedAt` timestamp NULL DEFAULT NULL,
     `Email` varchar(255) NOT NULL,
     `Password` text NOT NULL,
     `Admin` tinyint(1) NOT NULL DEFAULT '0',
-    PRIMARY KEY (`id`)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `UniqueEmail` (`Email`)
+) ENGINE = InnoDB AUTO_INCREMENT = 3 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
 CREATE TABLE IF NOT EXISTS `Dishes` (
     `id` int unsigned NOT NULL AUTO_INCREMENT,
     `Type` enum('dish', 'combo', 'drink') NOT NULL,
