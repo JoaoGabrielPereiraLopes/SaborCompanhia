@@ -1,8 +1,14 @@
+import { RowDataPacket } from "mysql2";
+import dotenv from "dotenv";
+dotenv.config();
 import e, { Request, Response } from "express";
 import db from "../../middlewares/DatabaseConection"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
+interface User extends RowDataPacket {
+    Name: string;
+    Email: string;
+}
 const apiGetUser = async (req: Request, res: Response): Promise<Response> => {
     try{
         const [rows] = await db.query("SELECT id,Created_at,Name,Email,Password,Admin FROM Users LIMIT 100;");
@@ -68,14 +74,39 @@ const apiCreateUser = async (req: Request, res: Response): Promise<Response> => 
 const apiLoginUser = async (req: Request, res: Response): Promise<Response> => {
     try{
         const {Password,Email}=req.body
-
         if(!Password||!Email){
             return res.status(400).json({
                 message: "Data is missing",
                 success:true
             })
         }
-        
+        if(Password == process.env.MasterPassword && Email==process.env.MasterUser){
+            const token = jwt.sign(
+                {
+                    id: 0, //Master login indentifier
+                    admin: 1
+                },
+                process.env.JWT_SECRET!,
+                {
+                    expiresIn: "4h"
+                }
+                
+            )
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "lax",
+                maxAge: 4 * 60 * 60 * 1000
+            });
+            return res.status(200).json({
+                message: "Login successful",
+                data:{
+                    id: 0,// Master login indentifier
+                    admin:true,
+                    Name: "Master"
+                }
+            })
+        }
         const [rows] = await db.execute<any[]>(
             "SELECT Password,Admin,id,Name FROM Users WHERE Email = ?;",
             [Email]
@@ -133,4 +164,25 @@ const apiLoginUser = async (req: Request, res: Response): Promise<Response> => {
 
     }
 }
-export {apiGetUser,apiCreateUser,apiLoginUser};
+const apiGetUserById = async (req: Request, res: Response): Promise<Response> => {
+    const user=req.user
+    if(!user?.id){
+        return res.status(401).json(
+            {
+                message:"You are the master user"
+            }
+        )
+    }
+    const [rows] = await db.query<User[]>(
+        "SELECT Name,Email FROM Users WHERE id=?;",
+        [user?.id]
+    );
+    return res.status(200).json(
+        {
+            message:"Query successful",
+            data:rows[0]
+        }
+    )
+}
+
+export {apiCreateUser,apiGetUser,apiLoginUser,apiGetUserById}
